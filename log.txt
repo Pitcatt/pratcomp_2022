@@ -1,0 +1,86 @@
+    1  pwd
+    2  cd/home
+    3  cd/ecubio
+    4  ecubio
+    5  cd /home/ecubio/documents
+    6  pwd
+    7  cd Downloads/
+    8  cd
+    9  mkdir praccomp
+   10  ls
+   11  cd
+   12  cd praccomp/
+   13  ls
+   14  touch test.txt
+   15  ls
+   16  ls -la
+   17  ls ..
+   18  ls ../ ../ 
+   19  clear
+   20  ls - l
+   21  ls -l
+   22  ls -lh
+   23  ls -lah
+   24  ls - lh
+   25  ls-lh
+   26  ls -lh
+   27  echo $PATH
+   28  echo $home
+   29  echo $USER
+   30  var='echo "Hello world"
+   31  echo $var
+   32  cd
+   33  '
+   34  less.text.exe
+   35  less test.txt
+   36  less nano.txt
+   37  nano.txt
+   38  nano test.txt
+   39  rm test.txt
+   40  ls
+   41  ls -lh
+   42  touch test.txt
+   43  mkdir blahblah
+   44  ls
+   45  rm blahblah
+   46  rmdir blahblah
+   47  ls
+   48  mkdir blahblah
+   49  touch blahblah/test2.txt
+   50  rmdir blahblah
+   51  rm -r blahbh=lah
+   52  rm -r blahblah
+   53  ls
+   54  cd
+   55  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   56  ls
+   57  bash Miniconda3-latest-Linux-x86_64.sh 
+   58  exit
+   59  md5sum
+   60  cd
+   61  home
+   62  conda install mamba -c conda-forge
+   63  mamba
+   64  mamba install htop
+   65  mamba install htop -c conda-forge
+   66  htop
+   67  ls
+   68  mkdir praccoomp
+   69  cd praccomp
+   70  git
+   71  git clone https://github.com/Pitcatt/pratcomp_2022.git
+   72  cd pratcomp_2022/
+   73  ls
+   74  nano README.md
+   75  ls 
+   76  git status
+   77  git add README.md
+   78  git status
+   79  git commit -m "Added README.md"
+   80  git config --global user.email "Jozazi@yahoo.com"
+   81  git config --global user.name "Pitcatt"
+   82  git commit -m "Added README.md"
+   83  git status
+   84  git push
+   85  history
+   86  history > log.txt
