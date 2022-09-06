@@ -83,3 +83,10 @@ X <- 4^2
 - [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> support>
 - [x] list syntax required (and unordered or ordered list supported)
 
+## Tables
+
+First Header | Second Header 
+------------ | -------------
+Content cell 1 | Content cell 2
+Content column 1 | Content column 2
+
