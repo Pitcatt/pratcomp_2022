@@ -27,3 +27,18 @@ _The Way we Eat_ by Pitcatt
 > I pickled him in warm milk, \
 > And consumed each and every bite, \
 
+## LISTS
+
+Unordered 
+* Item 1 
+* Item 2
+	* Item 2a
+	* ITem 2b
+
+Ordered
+1. Item 1
+2. Item 2
+3. Item 3
+	* Item 3a
+	* Item 3b
+
