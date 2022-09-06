@@ -42,3 +42,9 @@ Ordered
 	* Item 3a
 	* Item 3b
 
+## BULLETPOINTS
+
+- Point 1
+- Point 2
+- Point 3
+
