@@ -27,7 +27,7 @@ TotalWeak = NumberA + NumberT
 
 if SeqLength < 14:
 	MeltTemp = (4 * TotalStrong) + (2 * TotalWeak)
-	print('Melting Temp (short): ,' MeltTemp, 'C\n')
+	print('Melting Temp (short): ', MeltTemp, 'C\n')
 else: 
 	MeltTempLong = 64.9 + 41 * (TotalStrong - 16.4) / SeqLength
 	print('\nMelting Temp (long): ', MeltTempLong, 'C\n')
@@ -46,3 +46,4 @@ print('The complimentary sequence is: ', Comp, '\n')
 print('The reverse compliment is: ', Comp[::-1], '\n')
 
 print('\n')
+
