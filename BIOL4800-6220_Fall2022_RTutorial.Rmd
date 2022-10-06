@@ -1,0 +1,432 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+### Enviornment
+1 + 100
+
+2^2
+
+7/2
+
+4-1
+
+2*2
+
+3 + 5*2
+
+(3+5)*2
+
+2e2
+
+2/100000
+
+sin(1)
+
+log(1)
+
+exp(0)
+
+1 == 1
+
+1 >= 1
+
+1 < 1
+
+1 != 2
+
+
+x <- 10
+
+x <- 10
+
+x
+
+x + x
+
+x - 5
+
+x^2
+
+y <- x + x
+
+y
+
+1:5
+
+2^(1:5)
+
+v <- 1:5
+
+2^v
+
+log10(v)
+
+```{r}
+
+
+```
+
+## Package managment
+
+```{r}
+installed.packages()
+```
+```{r}
+#install.packages("vegan", dependencies = TRUE)
+```
+
+```{r}
+#library(vegan)
+```
+
+```{r}
+#remove.packages("vegan")
+```
+
+## Getting Help
+```{r}
+?plot()
+```
+```{r}
+help(plot)
+```
+```{r}
+?"<-"
+```
+```{r}
+vignette("FAQ-vegan")
+```
+
+```{r}
+
+```
+
+
+## Data and their formats
+
+```{r}
+cats <- data.frame(coat = c("calico", "black", "taffy"),
+                   weight = c(2.1,5,3.2),
+                   likes_string = c(1,0,1))
+```
+
+```{r}
+cats
+```
+
+```{r}
+getwd()
+```
+```{r}
+write.csv(cats, file = "./cats.csv")
+```
+
+```{r}
+cats <- read.csv("./data/cats/csv")
+```
+
+```{r}
+cats$coat
+```
+```{r}
+cats$weight
+```
+
+```{r}
+cats$weight*10
+```
+```{r}
+log(cats$weight)
+```
+```{r}
+logweight <- log(cats$weight)
+cbind(cats,logweight)
+```
+```{r}
+cats <- cbind(cats,logweight)
+```
+
+```{r}
+cats
+```
+
+```{r}
+paste("My cat is ", cats$coat, ", and it weighs ", cats$weight, " kg.", sep="")
+```
+
+### Data types
+
+```{r}
+typeof(cats$coat)
+```
+
+```{r}
+typeof(cats$weight)
+```
+
+```{r}
+typeof(cats$likes_string)
+```
+
+```{r}
+typeof(3.14159)
+```
+```{r}
+typeof(FALSE)
+```
+```{r}
+typeof(TRUE)
+```
+```{r}
+typeof(T)
+typeof(F)
+```
+```{r}
+typeof(cats)
+```
+```{r}
+class(cats)
+```
+```{r}
+file.show("./data/cats.csv")
+```
+
+```{r}
+cats$likes_string <- as.logical(cats$likes_string)
+type
+```
+```{r}
+cats$likes_string
+```
+```{r}
+c("a","b")
+```
+
+```{r}
+ab <- c("a", "b")
+ab
+```
+
+```{r}
+c(ab,"c")
+```
+
+```{r}
+c(ab, ab)
+```
+
+```{r}
+1:10
+```
+
+```{r}
+seq(10)
+```
+
+```{r}
+z <- seq(10)
+head(z, n=3)
+```
+```{r}
+length(z)
+```
+
+```{r}
+class(z)
+```
+
+```{r}
+typeof(z)
+```
+
+```{r}
+seq(0,100, by=5)
+```
+
+
+### Data Frames
+
+```{r}
+cats
+```
+
+```{r}
+str(cats$coat)
+```
+
+```{r}
+coats <- c("tabby", "tortoiseshell", "tortoiseshell", "black", "tabby")
+coats
+```
+```{r}
+str(coats)
+```
+```{r}
+factor(coats)
+```
+```{r}
+categories <- factor(coats)
+class(coats)
+class(categories)
+```
+```{r}
+str(categories)
+```
+
+### Lists
+
+```{r}
+list_example <- list(title="Numbers", numbers = 1:10, data=TRUE)
+```
+```{r}
+list_example
+```
+```{r}
+another_list <- list(1, "a",TRUE, 1+1i)
+another_list
+```
+
+```{r}
+typeof(list_example)
+class(list_example)
+```
+```{r}
+typeof(cats)
+class(cats)
+```
+
+```{r}
+data.frame(list_example)
+```
+```{r}
+cats
+```
+```{r}
+cats[,2]
+```
+
+```{r}
+cats[3,]
+```
+
+```{r}
+cats[2:3,c(1,3)]
+```
+
+### Matricies
+
+```{r}
+matrix_example <- matrix(0, ncol=5, nrow=3)
+```
+
+```{r}
+matrix_example
+```
+
+
+```{r}
+class(matrix_example)
+```
+```{r}
+typeof(matrix_example)
+```
+```{r}
+str(matrix_example)
+```
+```{r}
+dim(matrix_example)
+```
+```{r}
+ncol(matrix_example)
+```
+```{r}
+nrow(matrix_example)
+```
+```{r}
+class(data.frame(matrix_example))
+```
+```{r}
+df_example <- data.frame(matrix_example)
+df_example
+```
+
+### Subsetting
+
+```{r}
+p <- c(2.3,6.9,4.0,24.3,2)
+p
+```
+```{r}
+names(p) <- c('a','b','c','d','e')
+p
+```
+```{r}
+p[2:4]
+```
+```{r}
+p[c(1,5)]
+```
+```{r}
+p[c(1,1,1,3,5,5)]
+```
+```{r}
+p[6]
+```
+```{r}
+p[-3]
+```
+```{r}
+p[c(-1,-5)]
+```
+```{r}
+p[-(2:4)]
+```
+```{r}
+p[c('a','c')]
+```
+```{r}
+p[c(T,F,T,F,T)]
+```
+```{r}
+p[names(p) != 'c']
+```
+
+### Factors
+
+```{r}
+f <- factor(c('a','b','c','d','e'))
+f
+```
+
+```{r}
+f[f == 'a']
+```
+
+```{r}
+f[1:3]
+```
+```{r}
+f[f %in% c('b','c')]
+```
+
+```{r}
+f[-3]
+```
+
+```{r}
+f2 <- c('a','a','b','c','c')
+f2
+```
+```{r}
+f2[f2 == 'a']
+```
+```{r}
+f2[f2 %in% c('a','c')]
+```
+
