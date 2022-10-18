@@ -128,7 +128,7 @@ write.csv(cats, file = "./cats.csv")
 ```
 
 ```{r}
-cats <- read.csv("./data/cats/csv")
+#cats <- read.csv("./data/cats/csv")
 ```
 
 ```{r}
@@ -198,11 +198,11 @@ file.show("./data/cats.csv")
 ```
 
 ```{r}
-cats$likes_string <- as.logical(cats$likes_string)
-type
+#cats$likes_string <- as.logical(cats$likes_string)
+#type
 ```
 ```{r}
-cats$likes_string
+#cats$likes_string
 ```
 ```{r}
 c("a","b")
@@ -428,5 +428,138 @@ f2[f2 == 'a']
 ```
 ```{r}
 f2[f2 %in% c('a','c')]
+```
+
+### Matricies Resumed
+
+```{r}
+set.seed(21)
+m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m
+```
+
+```{r}
+m[3:4, c(3,1)]
+```
+```{r}
+m[,c(3,4)]
+```
+
+### Lists revisted
+
+```{r}
+xlist <- list(a="BIOL48006220",b=seq(1,10,by = 0.5), data="Grade")
+xlist
+```
+
+```{r}
+xlist[1:2]
+```
+
+```{r}
+xlist['a']
+```
+
+```{r}
+xlist[['a']]
+```
+
+```{r}
+xlist['b']
+```
+
+```{r}
+xlist[['b']]
+```
+
+```{r}
+xlist$b
+```
+
+### Data Frames Revisited 
+
+```{r}
+gp <- read.csv('forest_area_sq_km.csv')
+```
+
+```{r}
+head(gp, n=10L)
+```
+```{r}
+head(gp[3], n=10L)
+```
+
+```{r}
+nrow(gp)
+```
+
+```{r}
+head(gp[["country"]], 10L)
+```
+
+```{r}
+gp$X2001
+```
+
+```{r}
+gp[c(1,3), 2:5]
+```
+
+```{r}
+gp[ which(gp$X1989 <= 100 & gp$X2019 >= 100),]
+```
+
+## Conditionals and Flow
+
+```{r}
+n <- 10
+
+if (n < 10) {
+  print("n is less than 10")
+} else if (n > 10) {
+  print("n is greater than 10")
+} else {
+  print("n is equal to 10")
+}
+```
+
+```{r}
+for (n in seq(0,20)) {
+  if (n < 10) {
+    print("n is less than 10")
+  } else if (n > 10) {
+    print("n is greater than 10")
+  } else {
+    print("n is equal to 10")
+  }
+}  
+```
+```{r}
+g <- 0 
+
+while (g <=10) {
+  print(paste(g,"is less than or equal to 10"))
+  g <- g+1
+}
+```
+
+## Plotting and Figures
+
+```{r}
+#install.packages("ggplot2")
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+forestdata <- read.csv('forest_area_sq_km.csv')
+
+head(forestdata)
+```
+
+```{r}
+ggplot(data=forestdata, mapping=aes(x=X1989, y=X2019)) + geom_point()
 ```
 
