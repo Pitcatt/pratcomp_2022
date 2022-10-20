@@ -563,3 +563,91 @@ head(forestdata)
 ggplot(data=forestdata, mapping=aes(x=X1989, y=X2019)) + geom_point()
 ```
 
+```{r}
+gp <- read.csv('gapminder_all.csv')
+gp
+```
+```{r}
+ggplot(data=gp, mapping=aes(x=gdpPercap_1952, y=pop_1952)) + geom_point()
+```
+
+```{r}
+ggplot(data=gp, mapping=aes(x=gdpPercap_2002, y=pop_2002)) + geom_point()
+```
+
+```{r}
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv")
+head(gapminder)
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=gdpPercap, y=lifeExp)) + geom_point()
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=year, y=lifeExp, by=country, color=continent)) + geom_line()
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=year, y=lifeExp, by=country)) + geom_line(mapping = aes(color=continent)) + geom_point()
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=gdpPercap, y=lifeExp)) + geom_point()
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=gdpPercap, y=lifeExp)) + geom_point(alpha=0.25) + scale_x_log10()
+```
+
+```{r}
+ggplot(data=gapminder, mapping=aes(x=gdpPercap, y=lifeExp)) + geom_point(alpha=0.25, color="purple", size = 0.9, pch = 9) + scale_x_log10() + geom_smooth(method=lm, color="gold", size=1.25)
+```
+
+```{r}
+africas <- gapminder[gapminder$continent == "Africa", ]
+head(africas)
+```
+
+```{r}
+ggplot(data=africas, mapping = aes(x=year, y=lifeExp)) + 
+  geom_line(color = 'blue') + 
+  facet_wrap( ~ country) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs( 
+    x = "year",
+    y = "life Expentency",
+    title = "Life Expectency Over Time in African Countries"
+  )
+```
+
+```{r}
+AfricanLifeExp <- ggplot(data=africas, mapping = aes(x=year, y=lifeExp)) + 
+  geom_line(color = 'blue') + 
+  facet_wrap( ~ country) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs( 
+    x = "year",
+    y = "life Expentency",
+    title = "Life Expectency Over Time in African Countries"
+  )
+```
+
+```{r}
+ggsave(filename = "AfricanLifeExp.png", plot = AfricanLifeExp, width = 24, height = 40, dpi = 300, units = "cm")
+```
+
+```{r}
+pdf(file = "AfricanLifeExp.pdf", width = 24, height = 40)
+plot(AfricanLifeExp)
+dev.off()
+```
+
+```{r}
+write.table(gapminder, file="gapminder_web.csv", sep = ",")
+```
+
+```{r}
+write.csv(africas, file="gapminder_web_africas.csv")
+```
+
