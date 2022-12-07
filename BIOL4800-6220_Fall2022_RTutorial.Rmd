@@ -1,10 +1,10 @@
 ---
 title: "R Notebook"
 output:
+  pdf_document: default
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
-  pdf_document: default
 ---
 
 ### Enviornment
@@ -743,22 +743,22 @@ pie(table(beer), main="Beer preferrence by students")
 2. Numerical Data
   a. Stem-and-lead Plots
 ```{r}
-stem(pedes)
+##stem(pedes)
 ```
 
   b. Strip
 ```{r}
-stripchart(pedes, method="stack")
+##stripchart(pedes, method="stack")
 ```
 
 3. Measures of Center
   a. Mean
 ```{r}
-mean(pedes)
+##mean(pedes)
 ```
 
 ```{r}
-mean(gapminder2$lifeExp)
+##mean(gapminder2$lifeExp)
 ```
 
   b. Median 
@@ -776,7 +776,7 @@ with(gapminder, median(lifeExp))
 
   c. Mode
 ```{r}
-which(table(pedes) == max(tbale(pedes)))
+which(table(pedes) == max(table(pedes)))
 ```
 
 4. Variation
@@ -818,85 +818,85 @@ summary(pedes)
 5. Plot
   a. histograms
 ```{r}
-hist(pedes, breaks="scott")
+##hist(pedes, breaks="scott")
 ```
 
 ```{r}
-hist(pedes, breaks+"scott", prob=TRUE)
+##hist(pedes, breaks+"scott", prob=TRUE)
 ```
 
 ```{r}
-hist(pedes, breaks="scotts", prob=T)
+#hist(pedes, breaks="scotts", prob=T)
 
 ```
 
 ```{r}
-plot(density(pedes))
+##plot(density(pedes))
 ```
 
   b. Box plots
 ```{r}
-boxplot(pedes)
+#boxplot(pedes)
 ```
 
 ```{r}
-summary(boxplot(pedes))
+#summary(boxplot(pedes))
 ```
 
 #### Bivariate and multivariant 
 
 ```{r}
-spid.gen <- read.csv("data/spider_genitalia.csv", header = T)
-spid.gen
+##spid.gen <- read.csv("data/spider_genitalia.csv", header = T)
+#spid.gen
 ```
 
 ```{r}
-bxoplot(spid.gen$left.bulb ~ spid.gen$right.bulb)
+##bxoplot(spid.gen$left.bulb ~ spid.gen$right.bulb)
 ```
 
 ```{r}
-plot(spid.gen$left.bulb ~ spid.gen$right.bulb)
+##plot(spid.gen$left.bulb ~ spid.gen$right.bulb)
 ```
 
 ```{r}
-plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch = as.character(spid.gen$habitat))
+##plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch = as.character(spid.gen$habitat))
 ```
 
   C. Linear regression
 ```{r}
-gen.reg <- lm(spid.gen$left.bulb ~ spid.gen$right.bulb)
-gen.reg
+##gen.reg <- lm(spid.gen$left.bulb ~ spid.gen$right.bulb)
+#gen.reg
 ```
 
 ```{r}
-summary(gen.reg)
+#summary(gen.reg)
 ```
 
 ```{r}
-plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch + as.character(spid.gen$habitat))
-abline(gen.reg)
+###plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch + as.character(spid.gen$habitat))
+##abline(gen.reg)
 ```
 
   d. Correlation Coefficients & Soearman Rank Correlation
 
 ```{r}
-cor.gen <- with(spid.gen, cor(left.bulb, right.bulb))
-cor.gen^2
+#cor.gen <- with(spid.gen, cor(left.bulb, right.bulb))
+#cor.gen^2
 ```
 
 ```{r}
-spearman.cor.gen <- with(spid.gen, cor(left.bulb, right.bulb, methof"spearman"))
-spearman.cor.gen^2
+##spearman.cor.gen <- with(spid.gen, cor(left.bulb, right.bulb, methof"spearman"))
+##spearman.cor.gen^2
 ```
 
   e. residuals 
 ```{r}
-residuals(gen.reg)
+#####residuals(gen.reg)
 ```
 
   f. transformation
 ```{r}
-plot(spid.gen$left.bulb^2~spid.gen$right.bulb)
+#3plot(spid.gen$left.bulb^2~spid.gen$right.bulb)
 ```
 
   2. Comparing Discrete Treatment Effects
@@ -907,31 +907,31 @@ obs_weighted <- c(4,15,6,15,18,2)
 obs_fair <- c(10,10,10,10,10,10)
 exp <- c(.16,.17,.16,.17,.17,.17)
 chisq.test(obs_weighted, p=exp)
-chisq.test(oobs_fair, p=exp)
+chisq.test(obs_fair, p=exp)
 ```
 
   b. T-tests
 ```{r}
 #H0 - true mean is equal to 0, but you can set true mean to other values with mu=
-t.test(spid.gen$carapace.length)
+##t.test(spid.gen$carapace.length)
 
-t.test(spid.gen$carapace.length, mu=29)
+##t.test(spid.gen$carapace.length, mu=29)
 ```
 
 ```{r}
-habitat.t2 <- t.test(spid.gen$carapace.length~spid.gen$habitat)
-habitat.t2
+#habitat.t2 <- t.test(spid.gen$carapace.length~spid.gen$habitat)
+#habitat.t2
 ```
 
 ```{r}
-habitat.tless <- t.test(spid.gen$left.bulb, alternative = "less")
-habitat.tless
+#habitat.tless <- t.test(spid.gen$left.bulb, alternative = "less")
+#habitat.tless
 ```
 
 
 ```{r}
-habitat.tgreater <- t.test(spid.gen$left.bulb, alternative = "greater")
-habitat.tgreater
+#habitat.tgreater <- t.test(spid.gen$left.bulb, alternative = "greater")
+#habitat.tgreater
 ```
 
 ```{r}
@@ -943,15 +943,15 @@ abline(h=1:6, lty=1:6, col=1:6, lwd=3)
 ```
 
 ```{r}
-pdf("./DATA/PlotCheatSheet.pdf")
+##pdf("./DATA/PlotCheatSheet.pdf")
 
-plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab="Line types (lty) 1 to 6", xlab="Plotting character (pch) 1 to 25 and colours (col) 1 to 8", main="Line types (lty), plotting characters (pch), \nand colors (col) for plot and xyplot", lab=c(25,7,2))
+##plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab="Line types (lty) 1 to 6", xlab="Plotting character (pch) 1 to 25 and colours (col) 1 to 8", main="Line types (lty), plotting characters (pch), \nand colors (col) for plot and xyplot", lab=c(25,7,2))
 
-points(1:8, rep(0.5,8), pch=20, col=1:8, cex=4)
+##points(1:8, rep(0.5,8), pch=20, col=1:8, cex=4)
 
-abline(h=1:6, lty=1:6, col=1:6, lwd=3)
+##abline(h=1:6, lty=1:6, col=1:6, lwd=3)
 
-dev.off()
+#dev.off()
 ```
 
 ## Looping and Conditionals
