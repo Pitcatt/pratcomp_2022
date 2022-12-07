@@ -651,3 +651,453 @@ write.table(gapminder, file="gapminder_web.csv", sep = ",")
 write.csv(africas, file="gapminder_web_africas.csv")
 ```
 
+## Statistics 
+
+### Additional ways of importing/reading data
+
+```{r}
+rand <- c(12, 54, 33, 98, 65)
+rand
+```
+
+```{r}
+sum(rand)
+```
+
+```{r}
+length(rand)
+```
+
+```{r}
+avg.rand <- sum(rand)/length(rand)
+avg.rand
+```
+
+```{r}
+mean(rand)
+```
+
+```{r}
+sort(rand)
+```
+
+```{r}
+min(rand)
+max(rand)
+```
+
+```{r}
+cumsum(rand)
+```
+
+```{r}
+diff(rand)
+```
+
+```{r}
+rand[2]
+```
+
+```{r}
+rand*2
+```
+
+```{r}
+pedes <- scan()
+```
+
+```{r}
+pedes
+```
+
+### Analyses
+
+#### univariate statistics
+
+1. Catoegorical Data
+  a. Barplots
+```{r}
+beer <- c(3, 4, 1, 1, 3, 4, 3, 3, 1, 3, 2, 1, 2, 1, 2, 3, 2, 3, 1, 1, 1, 1, 4, 3, 1)
+length(beer)
+```
+
+```{r}
+barplot(beer)
+```
+
+
+
+```{r}
+barplot(table(beer), xlab="Beer", ylab="frequency") # Counts
+```
+
+```{r}
+barplot(table(beer)/length(beer), xlab="Beer", ylab="Proportion") # Proportions instead of frequencies
+```
+
+  b. Pie Charts
+```{r}
+pie(table(beer), main="Beer preferrence by students")
+```
+
+2. Numerical Data
+  a. Stem-and-lead Plots
+```{r}
+stem(pedes)
+```
+
+  b. Strip
+```{r}
+stripchart(pedes, method="stack")
+```
+
+3. Measures of Center
+  a. Mean
+```{r}
+mean(pedes)
+```
+
+```{r}
+mean(gapminder2$lifeExp)
+```
+
+  b. Median 
+```{r}
+median(pedes)
+```
+
+```{r}
+median(gapminder$lifeExp)
+```
+
+```{r}
+with(gapminder, median(lifeExp))
+```
+
+  c. Mode
+```{r}
+which(table(pedes) == max(tbale(pedes)))
+```
+
+4. Variation
+  a. Range
+```{r}
+range(pedes)
+```
+
+```{r}
+diff(range(pedes))
+```
+
+  b. variance
+```{r}
+var(pedes)
+```
+
+
+```{r}
+sd(pedes)
+```
+
+  C. IQRs
+  
+```{r}
+IQR(pedes)
+```
+
+```{r}
+scale(pedes)
+```
+
+  e. summary
+```{r}
+summary(pedes)
+```
+
+
+5. Plot
+  a. histograms
+```{r}
+hist(pedes, breaks="scott")
+```
+
+```{r}
+hist(pedes, breaks+"scott", prob=TRUE)
+```
+
+```{r}
+hist(pedes, breaks="scotts", prob=T)
+
+```
+
+```{r}
+plot(density(pedes))
+```
+
+  b. Box plots
+```{r}
+boxplot(pedes)
+```
+
+```{r}
+summary(boxplot(pedes))
+```
+
+#### Bivariate and multivariant 
+
+```{r}
+spid.gen <- read.csv("data/spider_genitalia.csv", header = T)
+spid.gen
+```
+
+```{r}
+bxoplot(spid.gen$left.bulb ~ spid.gen$right.bulb)
+```
+
+```{r}
+plot(spid.gen$left.bulb ~ spid.gen$right.bulb)
+```
+
+```{r}
+plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch = as.character(spid.gen$habitat))
+```
+
+  C. Linear regression
+```{r}
+gen.reg <- lm(spid.gen$left.bulb ~ spid.gen$right.bulb)
+gen.reg
+```
+
+```{r}
+summary(gen.reg)
+```
+
+```{r}
+plot(spid.gen$left.bulb ~ spid.gen$right.bulb, pch + as.character(spid.gen$habitat))
+abline(gen.reg)
+```
+
+  d. Correlation Coefficients & Soearman Rank Correlation
+
+```{r}
+cor.gen <- with(spid.gen, cor(left.bulb, right.bulb))
+cor.gen^2
+```
+
+```{r}
+spearman.cor.gen <- with(spid.gen, cor(left.bulb, right.bulb, methof"spearman"))
+spearman.cor.gen^2
+```
+
+  e. residuals 
+```{r}
+residuals(gen.reg)
+```
+
+  f. transformation
+```{r}
+plot(spid.gen$left.bulb^2~spid.gen$right.bulb)
+```
+
+  2. Comparing Discrete Treatment Effects
+    a. chi-squared
+
+```{r}
+obs_weighted <- c(4,15,6,15,18,2)
+obs_fair <- c(10,10,10,10,10,10)
+exp <- c(.16,.17,.16,.17,.17,.17)
+chisq.test(obs_weighted, p=exp)
+chisq.test(oobs_fair, p=exp)
+```
+
+  b. T-tests
+```{r}
+#H0 - true mean is equal to 0, but you can set true mean to other values with mu=
+t.test(spid.gen$carapace.length)
+
+t.test(spid.gen$carapace.length, mu=29)
+```
+
+```{r}
+habitat.t2 <- t.test(spid.gen$carapace.length~spid.gen$habitat)
+habitat.t2
+```
+
+```{r}
+habitat.tless <- t.test(spid.gen$left.bulb, alternative = "less")
+habitat.tless
+```
+
+
+```{r}
+habitat.tgreater <- t.test(spid.gen$left.bulb, alternative = "greater")
+habitat.tgreater
+```
+
+```{r}
+plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab="Line types (lty) 1 to 6", xlab="Plotting character (pch) 1 to 25 and colours (col) 1 to 8", main="Line types (lty), plotting characters (pch), \nand colors (col) for plot and xyplot", lab=c(25,7,2))
+
+points(1:8, rep(0.5,8), pch=20, col=1:8, cex=4)
+
+abline(h=1:6, lty=1:6, col=1:6, lwd=3)
+```
+
+```{r}
+pdf("./DATA/PlotCheatSheet.pdf")
+
+plot(1:25, rep(0.25,25), pch=1:25, col=1:25, ylim=c(0,6), cex=2, ylab="Line types (lty) 1 to 6", xlab="Plotting character (pch) 1 to 25 and colours (col) 1 to 8", main="Line types (lty), plotting characters (pch), \nand colors (col) for plot and xyplot", lab=c(25,7,2))
+
+points(1:8, rep(0.5,8), pch=20, col=1:8, cex=4)
+
+abline(h=1:6, lty=1:6, col=1:6, lwd=3)
+
+dev.off()
+```
+
+## Looping and Conditionals
+
+a. If then statments
+
+```{r}
+x <- 0
+if(x > 0){
+  print("positive number")
+} else if (x < 0) {
+  print("negativce number")
+} else 
+  print("zero")
+```
+
+```{r}
+a <- c(5,7,2,9)
+ifelse(a %% 2 == 0, "even", "odd")
+```
+
+b. For loops
+
+```{r}
+z <- c(2,5,3,7,8,9,11,7)
+count <- 0 
+
+for (val in z) {
+  if(val %% 2 == 0) count = count+1
+}
+print(count)
+```
+
+c. while statement
+```{r}
+i <- 1
+while (i < 5) {
+  print(i)
+  i = i+1
+}
+```
+
+d. Interruptions
+
+```{r}
+x <- 1:5
+
+for (val in x) {
+  if (val == 3) {
+    break
+  }
+  print(val)
+}
+```
+
+```{r}
+x <- 1:5
+for (val in x) {
+  if (val == 3) {
+    next
+  }
+  print(val)
+}
+```
+
+```{r}
+x <- 1:5
+repeat {
+  print(x)
+  x = x+1
+}
+```
+
+## randomization and dataset management (short)
+
+a. dataset managment
+```{r}
+B <- matrix(
+  c(2,3,4,1,5,98), 
+  nrow=3,
+  ncol=2
+)
+
+B
+```
+
+```{r}
+t(B)
+```
+
+```{r}
+C <- matrix(
+  c(7,4,2),
+  nrow = 3,
+  ncol = 1
+)
+
+C
+```
+
+```{r}
+BC <- cbind(B,C)
+
+BC
+```
+
+```{r}
+c(B)
+```
+
+b. Ranomizations
+
+```{r}
+# rnorm(n, mean, sd)
+# sample(x, size, replace = FALSE, prob = NULL)
+```
+
+```{r}
+ndist <- rnorm(100, 50, 10)
+ndist
+```
+
+```{r}
+mean(ndist)
+sd(ndist)
+```
+
+```{r}
+hist(ndist)
+```
+
+
+```{r}
+sample(ndist, 10)
+```
+
+```{r}
+test <- 1:100
+test
+```
+
+```{r}
+sample(test, 50, replace = FALSE)
+```
+
+```{r}
+sample(test, 50, replace = TRUE)
+```
+
